@@ -1,0 +1,86 @@
+@import 'variables.less';
+@import 'fonts.less';
+@import 'mixins.less';
+@import 'atoms.less';
+
+// ----------------------------------------------------
+// LEGACY
+
+/*
+Arduboy Web-based bitmap editor
+
+Copyright (c) 2016 emutyworks
+
+Released under the MIT license
+https://github.com/emutyworks/BitmapEditor/blob/master/LICENSE.txt
+*/
+body, input, select {
+  font-family: helvetica, arial, sans-serif;
+  font-size: 9pt;
+  padding: 0;
+  cursor: default;
+}
+.mono {
+  font-family: monospace;
+  font-size: 10pt;
+}
+#memo {
+  width: 380px;
+}
+#min_w, #min_h {
+  width: 30px;
+}
+#edit_view {
+  position: relative;
+  left: 0;
+  top: 5px;
+}
+#edit_mes {
+  background-color:#ffff00;
+}
+#edit_menu {
+  position: absolute;
+  z-index: 2;
+}
+#editor {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+}
+#cursor {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+}
+#hx {
+  visibility: visible;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+}
+#pixel_x {
+  width: 30px;
+}
+
+
+// ----------------------------------------------------
+.wrapper { // Only for demo purposes...
+  &:extend(.bg__white); // Extended
+
+  text-align: center;
+  font-family: @main_font_set;
+
+  h1 {
+    font-weight: 900;
+  }
+
+  h2 {
+    font-weight: 400;
+  }
+
+  h3 {
+    font-weight: 100;
+  }
+}

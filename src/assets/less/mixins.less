@@ -1,0 +1,53 @@
+// COMPONENT MIXINS
+// --------------------------------------------------
+//
+
+/**
+ * Generate defaults inners for paddings and margins
+ * Generate inners in multiples of five:
+ *
+ * NOTE: Note that classes are 'double-declarated' for
+ * specificity override purposes.
+ *
+ * p0 - p50:    padding
+ * m0 - m50:    margin
+ * mt0 - mt50:  margin-top
+ * mb0 - mb50:  margin-bottom
+  */
+.generate-inners( 10 );
+.generate-inners( @n, @i: 0 ) when ( @i =< @n ) {
+  @result: (@i * 5);
+
+  .p@{result}.p@{result}  {
+    padding: (@result * 1px) !important;
+  }
+  .pr@{result}.pr@{result}  {
+    padding-right: (@result * 1px) !important;
+  }
+  .pl@{result}.pl@{result}  {
+    padding-left: (@result * 1px) !important;
+  }
+  .pt@{result}.pt@{result}  {
+    padding-top: (@result * 1px) !important;
+  }
+  .pb@{result}.pb@{result}  {
+    padding-bottom: (@result * 1px) !important;
+  }
+  .m@{result}.m@{result}  {
+    margin: (@result * 1px) !important;
+  }
+  .mt@{result}.mt@{result}  {
+    margin-top: (@result * 1px) !important;
+  }
+  .ml@{result}.ml@{result}  {
+    margin-left: (@result * 1px) !important;
+  }
+  .mr@{result}.mr@{result}  {
+    margin-right: (@result * 1px) !important;
+  }
+  .mb@{result}.mb@{result}  {
+    margin-bottom: (@result * 1px) !important;
+  }
+
+  .generate-inners( @n, ( @i + 1 ) );
+}
