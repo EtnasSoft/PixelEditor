@@ -89,7 +89,7 @@ module.exports = grunt => {
         livereload: true
       },
       js: {
-        files: ['src/assets/js/main.js'],
+        files: ['src/assets/js/*.js'],
         tasks: ['build']
       },
       all: {

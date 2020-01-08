@@ -1,0 +1,75 @@
+// Vars must goes here.
+// -------------------
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  --scrollbarBG: #CFD8DC;
+  --thumbBG: #90A4AE;
+}
+
+body {
+  margin: 0;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 11px;
+}
+.scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+
+}
+.scrollable::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  background: #252525;
+  display: flex;
+}
+
+.pane {
+  padding: 1em;
+  color: #fff;
+  overflow: auto;
+}
+
+.pane__left {
+  min-width: 60%;
+}
+
+.pane__right {
+  position: relative;
+}
+
+.gutter {
+  width: 10px;
+  height: 100%;
+  background: #666;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: col-resize;
+}
+
+button, input, select {
+  margin: 12px;
+  background-color: #3E3D3D;
+  color: var(--main-marfil);
+  cursor: pointer;
+  border: 1px solid var(--main-black);
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 15px;
+  text-shadow: var(--main-black) 1px 1px 0;
+}

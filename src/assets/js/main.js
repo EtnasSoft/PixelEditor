@@ -6,30 +6,64 @@ const PixMapper = $(() => {
       console.info( 'Hello Bitmap Editor!!' );
 
       this.initEvents();
-      this.checkForCookiesBar();
     },
 
     initEvents() {
-      $('.cookies__bar__button--close').on('click', this.closeCookiesBar)
+      var self = this;
+
+      this.getGutter().addEventListener('mousedown', function (e) {
+        self.resizePanes(e)
+      });
+
+      this.getLoadDataSubmit().addEventListener('click', () => void this.loadData() );
     },
 
-    checkForCookiesBar() {
-      const userSettings = localStorage.getItem('PixMapper') || "{}";
-      const { cookiesApproved } = JSON.parse(userSettings);
+    getLoadDataSubmit() {
+      return document.querySelector('#loadInputData');
+    },
 
-      if (!cookiesApproved) {
-        $('#cookies__bar').show();
+    getGutter() {
+      return document.querySelector('.gutter');
+    },
+
+    getLeftPane() {
+      return document.querySelector('.pane__left');
+    },
+
+    getRightPane() {
+      return document.querySelector('.pane__right');
+    },
+
+    getUserData() {
+      return document.querySelector('#input__data').value;
+    },
+
+    loadData() {
+      const currentUserData = this.getUserData();
+      const userDataParsed = currentUserData.split('\n');
+      console.info( 'loading user data: ', currentUserData );
+      loadUserDataIntoEditor(userDataParsed);
+    },
+
+    resizePanes(e) {
+      const leftPane =  this.getLeftPane();
+      // const rightPane = this.getRightPane();
+
+      window.addEventListener('mousemove', mousemove);
+      window.addEventListener('mouseup', mouseup);
+
+      let prevX = e.x;
+      const leftPanel = leftPane.getBoundingClientRect();
+
+      function mousemove(e) {
+        let newX = prevX - e.x;
+        leftPane.style.width = leftPanel.width - newX + 'px';
       }
-    },
 
-    closeCookiesBar(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      localStorage.setItem('PixMapper', JSON.stringify({ cookiesApproved: true }));
-
-      $('#cookies__bar').fadeOut();
-
-      return false;
+      function mouseup () {
+        window.removeEventListener('mousemove', mousemove);
+        window.removeEventListener('mouseup', mouseup);
+      }
     }
   };
 

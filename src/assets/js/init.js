@@ -26,13 +26,13 @@ var EDITOR_GUIDE = "#e0e080";
 var EDITOR_CUR = "#ff0000";
 var EDITOR_DRAG = "#ffff00";
 var EDITOR_W = "#ffffff";
-var EDITOR_B = "#000000";
+var EDITOR_B = "#1D1E22";
 var EDITOR_MENU_SIZE = 50;
 var EDITOR_MENU_Y = PRE_PIXEL_SIZE * MAX_PIXEL_Y;
 var EDITOR_MAIN_Y = EDITOR_MENU_Y + EDITOR_MENU_SIZE;
 var EDITOR_PRE_X = 0;
 var EDITOR_PRE_Y = 0;
-var EDITOR_MAX_X = (8 * 128) + 1 + 270;
+var EDITOR_MAX_X = 1024; //(8 * 128) + 1 + 270;
 var EDITOR_MAX_Y = PRE_PIXEL_SIZE * MAX_PIXEL_Y + EDITOR_MENU_SIZE + (CLIP_MAX_Y * CLIP_BLOCK_SIZE + 10);
 
 var d = new Array();
@@ -176,11 +176,11 @@ function init_editor(){
 
     init_editor_guide();
 
-    $('#edit_menu').css({
+    /*$('#edit_menu').css({
         top: EDITOR_MAIN_Y - 38,
-    });
+    });*/
 
-    $('#hx').css('top', EDITOR_MAX_Y);
+    //$('#hx').css('top', EDITOR_MAX_Y);
 }
 
 function init_editor_block(view_x,view_y,view_w,view_h,max_x,max_y){

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="/dist/img/favicon.png"/>
 
-    <title>PixMapper</title>
+    <title>PixelEditor</title>
 
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -14,34 +14,39 @@
     <link rel="stylesheet" href="/dist/app.css">
 </head>
 <body>
-<b>Pixel:</b>
-<a href="javascript:change_edit_pixel(8,8);">8x8</a> |
-<a href="javascript:change_edit_pixel(16,16);">16x16</a> |
-<a href="javascript:change_edit_pixel(32,32);">32x32</a> |
-<a href="javascript:change_edit_pixel(64,64);">64x64</a> |
-<a href="javascript:change_edit_pixel(128,64);">128x64</a> |
+<div class="wrapper">
+  <div class="pane pane__left scrollable">
+    <!-- -------------------------------------------------------------- -->
+    <div class="pane__controls">
+      <b>Pixel:</b>
+      <a href="javascript:change_edit_pixel(8,8);">8x8</a> |
+      <a href="javascript:change_edit_pixel(16,16);">16x16</a> |
+      <a href="javascript:change_edit_pixel(32,32);">32x32</a> |
+      <a href="javascript:change_edit_pixel(64,64);">64x64</a> |
+      <a href="javascript:change_edit_pixel(128,64);">128x64</a> |
 
-<input type="text" name="pixel_x" id="pixel_x">x
+      <input type="text" name="pixel_x" id="pixel_x">x
 
-<select name="pixel_y" id="pixel_y">
-    <option value="8">8</option>
-    <option value="16">16</option>
-    <option value="24">24</option>
-    <option value="32">32</option>
-    <option value="40">40</option>
-    <option value="48">48</option>
-    <option value="56">56</option>
-    <option value="64">64</option>
-</select>
+      <select name="pixel_y" id="pixel_y">
+        <option value="8">8</option>
+        <option value="16">16</option>
+        <option value="24">24</option>
+        <option value="32">32</option>
+        <option value="40">40</option>
+        <option value="48">48</option>
+        <option value="56">56</option>
+        <option value="64">64</option>
+      </select>
 
-<a href="javascript:apply_edit_pixel();">Apply</a>&nbsp;&nbsp;
-<a id="download" href="" download="" onclick="data_download()" 　target="_blank">Download</a> |
-Upload <input type="file" id="data_upload" accept="*/*"><br>
+      <a href="javascript:apply_edit_pixel();">Apply</a>&nbsp;&nbsp;
+      <br>
+      <a id="download" href="" download="" onclick="data_download()" 　target="_blank">Download</a> |
+      Upload <input type="file" id="data_upload" accept="*/*"><br>
 
-<b>Memo:</b> <input type="text" name="memo" id="memo">
-<input type="checkbox" name="view_hx" id="view_hx" onclick="set_view_hx()" value="">View Hex Data<br>
-
-<div id="edit_view">
+      <b>Memo:</b> <input type="text" name="memo" id="memo">
+      <input type="checkbox" name="view_hx" id="view_hx" onclick="set_view_hx()" value="">View Hex Data<br>
+    </div>
+    <div id="edit_view">
       <span id="edit_menu">
       <b>Rotation</b>
       <a href="javascript:edit_half_turn();">Half turn</a> |
@@ -54,40 +59,66 @@ Upload <input type="file" id="data_upload" accept="*/*"><br>
       <span id="edit_mes"></span>
       <br>
       <span id="edit_info"></span> min_w:<input type="text" name="min_w" id="min_w"> min_h:<input type="text"
-          name="min_h"
-          id="min_h">&nbsp;
+        name="min_h"
+        id="min_h">&nbsp;
+
+        <br>
+
 
       <b>Edit:</b>
       <a href="#" onmouseover="set_edit_mes('edit_copy'); return false;">Copy</a> |
       <a href="#" onmouseover="set_edit_mes('edit_paste');  return false;">Paste</a>
           <input type="checkbox"
-              name="merge_paste"
-              id="merge_paste"
-              onclick="set_merge_paste()"
-              value="">Merge |
+            name="merge_paste"
+            id="merge_paste"
+            onclick="set_merge_paste()"
+            value="">Merge |
       <a href="javascript:edit_cancel();">Cancel(esc)</a> |
       <span id="edit_undo"><a href="javascript:edit_undo();"
-          onmouseover="set_edit_mes('edit_undo');">Undo(z)</a> | </span>
+        onmouseover="set_edit_mes('edit_undo');">Undo(z)</a> | </span>
       <input type="checkbox" name="edit_alert" id="edit_alert" onclick="set_edit_alert()" value="">None alert
       </span>
 
-    <textarea id="hx" rows="30" cols="110"></textarea><br>
-    <canvas id="editor" width="" height=""></canvas>
-    <canvas id="cursor" width="" height=""></canvas>
+      <canvas id="editor" class="editor__canvas" width="" height=""></canvas>
+      <canvas id="cursor" class="editor__canvas" width="" height=""></canvas>
+    </div>
+    <!-- -------------------------------------------------------------- -->
+
+  </div>
+  <div class="pane pane__right scrollable">
+    <div class="pane__content">
+      <div>
+        <label for="hx">Hex Code</label>
+        <textarea id="hx" class="data__area" spellcheck="false" rows="10" cols="50"></textarea>
+      </div>
+      <div>
+        <label for="input__data">Input Data</label>
+        <textarea id="input__data" class="data__area" spellcheck="false" rows="10" cols="50"># [Pixel] 24x32
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x30, 0x60, 0x60, 0xA0, 0x70, 0xB0, 0x70, 0xB0, 0x60, 0x60, 0x60, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x01, 0xFD, 0xFD, 0x01, 0x01, 0x01, 0xFF, 0xE0, 0x53, 0xA8, 0x50, 0x40, 0x54, 0x57, 0x4B, 0xA5, 0x3C, 0x1C, 0x68, 0xE0, 0xC0, 0x00, 0x00, 0x1F, 0x20, 0x40, 0x80, 0xBF, 0x5F, 0x20, 0x9F, 0x40, 0x20, 0x10, 0xE1, 0xE8, 0xE8, 0x21, 0xD5, 0x12, 0x80, 0x28, 0x70, 0x2E, 0x1F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x82, 0xD5, 0xDE, 0xBD, 0xFA, 0x70, 0x01, 0x03, 0x00, 0x06, 0x05, 0xA2, 0xD5, 0xDE, 0xD8, 0xA0, 0x00,</textarea>
+        <button id="loadInputData">Load</button>
+      </div>
+    </div>
+    <div class="gutter"></div>
+  </div>
 </div>
+
+
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-<script src="/dist/js/main.min.js"></script>
 
-<script type="text/javascript" src="/dist/js/init.js"></script>
-<script type="text/javascript" src="/dist/js/editor.js"></script>
-<script type="text/javascript" src="/dist/js/edit.js"></script>
-<script type="text/javascript" src="/dist/js/clipboard.js"></script>
-<script type="text/javascript" src="/dist/js/cursor.js"></script>
-<script type="text/javascript" src="/dist/js/mainOld.js"></script>
+<script src="/dist/js/main.min.js"></script>
+<script src="/dist/js/init.js"></script>
+<script src="/dist/js/editor.js"></script>
+<script src="/dist/js/edit.js"></script>
+<script src="/dist/js/clipboard.js"></script>
+<script src="/dist/js/cursor.js"></script>
+<script src="/dist/js/mainOld.js"></script>
 
 </body>
 </html>

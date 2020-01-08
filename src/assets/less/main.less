@@ -2,24 +2,40 @@
 @import 'fonts.less';
 @import 'mixins.less';
 @import 'atoms.less';
+@import 'layout.less';
 
-// ----------------------------------------------------
-// LEGACY
+:root {
+  --main-bg-color: #252525;
+  --main-cell-color: #1D1E22;
+  --main-black: #000;
+  --main-marfil: #DDD;
+  --main-white: #FFF;
+  --main-dark-grey: #333;
+}
 
-/*
-Arduboy Web-based bitmap editor
-
-Copyright (c) 2016 emutyworks
-
-Released under the MIT license
-https://github.com/emutyworks/BitmapEditor/blob/master/LICENSE.txt
-*/
 body, input, select {
   font-family: helvetica, arial, sans-serif;
   font-size: 9pt;
   padding: 0;
   cursor: default;
 }
+
+.editor__canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.data__area {
+  width: 100%;
+  background-color: #3e3d3d;
+  border: 1px solid var(--main-black);
+  padding: 10px;
+  color: var(--main-marfil);
+  font-size: 15px;
+  min-height: 75px;
+}
+
 .mono {
   font-family: monospace;
   font-size: 10pt;
@@ -39,27 +55,10 @@ body, input, select {
   background-color:#ffff00;
 }
 #edit_menu {
-  position: absolute;
+  position: relative;
   z-index: 2;
 }
-#editor {
-  position: absolute;
-  z-index: 0;
-  left: 0;
-  top: 0;
-}
-#cursor {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  top: 0;
-}
-#hx {
-  visibility: visible;
-  position: absolute;
-  z-index: 1;
-  left: 0;
-}
+
 #pixel_x {
   width: 30px;
 }
