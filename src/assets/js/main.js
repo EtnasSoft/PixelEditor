@@ -3,7 +3,7 @@ const PixMapper = $(() => {
 
   const Main = {
     init() {
-      console.info( 'Hello Bitmap Editor!!' );
+      console.info('Hello Bitmap Editor!!');
 
       this.initEvents();
     },
@@ -15,7 +15,7 @@ const PixMapper = $(() => {
         self.resizePanes(e)
       });
 
-      this.getLoadDataSubmit().addEventListener('click', () => void this.loadData() );
+      this.getLoadDataSubmit().addEventListener('click', () => void this.loadData());
     },
 
     getLoadDataSubmit() {
@@ -41,12 +41,12 @@ const PixMapper = $(() => {
     loadData() {
       const currentUserData = this.getUserData();
       const userDataParsed = currentUserData.split('\n');
-      console.info( 'loading user data: ', currentUserData );
+      console.info('loading user data: ', currentUserData);
       loadUserDataIntoEditor(userDataParsed);
     },
 
     resizePanes(e) {
-      const leftPane =  this.getLeftPane();
+      const leftPane = this.getLeftPane();
       // const rightPane = this.getRightPane();
 
       window.addEventListener('mousemove', mousemove);
@@ -60,7 +60,7 @@ const PixMapper = $(() => {
         leftPane.style.width = leftPanel.width - newX + 'px';
       }
 
-      function mouseup () {
+      function mouseup() {
         window.removeEventListener('mousemove', mousemove);
         window.removeEventListener('mouseup', mouseup);
       }

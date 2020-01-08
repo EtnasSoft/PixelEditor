@@ -1,11 +1,3 @@
-/*
-Arduboy Web-based bitmap editor
-
-Copyright (c) 2016 emutyworks
-
-Released under the MIT license
-https://github.com/emutyworks/BitmapEditor/blob/master/LICENSE.txt
-*/
 window.onload = function () {
   editor = document.getElementById('editor');
   ctx = editor.getContext('2d');
@@ -18,11 +10,11 @@ window.onload = function () {
 
   merge_paste = false;
   edit_alert = true;
-  view_hx = true;
+  // view_hx = true;
 
-  $('#merge_paste').prop("checked", merge_paste);
-  $('#edit_alert').prop("checked", edit_alert);
-  $('#view_hx').prop("checked", view_hx);
+  $('#merge_paste').prop('checked', merge_paste);
+  $('#edit_alert').prop('checked', edit_alert);
+  // $('#view_hx').prop('checked', view_hx);
 
   $('#memo').val('New Character');
   $('#min_w').val(cur_info['min_w']);
@@ -230,10 +222,10 @@ window.onload = function () {
     cur_info['cx'] = cx;
     cur_info['cy'] = cy;
 
-    if ($('#min_w').val() == 0) {
+    if ($('#min_w').val() === 0) {
       $('#min_w').val(1);
     }
-    if ($('#min_h').val() == 0) {
+    if ($('#min_h').val() === 0) {
       $('#min_h').val(1);
     }
     cur_info['min_w'] = parseInt($('#min_w').val(), 10);
@@ -256,14 +248,13 @@ window.onload = function () {
 };
 
 function loadUserDataIntoEditor(up_array) {
-  console.info('up_array: ', up_array);
-  var up_d = [];
-  var editor_data = '';
-  var clipboard_data = '';
-  var editor_data_ended = null;
-  var clipboard_data_ended = null;
+  let up_d = [],
+    editor_data = '',
+    clipboard_data = '',
+    editor_data_ended = null,
+    clipboard_data_ended = null;
 
-  for (var i = 0; i < up_array.length; i++) {
+  for (let i = 0; i < up_array.length; i++) {
     var row = up_array[i];
 
     if (row.charAt(0) === '#') {
@@ -276,16 +267,16 @@ function loadUserDataIntoEditor(up_array) {
       } else if (row.trim() === '# clipboard_data_ended') {
         clipboard_data_ended = 1;
       }
-    } else if (row.charAt(0) == '0') {
+    } else if (row.charAt(0) === '0') {
       if (!editor_data_ended) {
-        editor_data += row.replace(/\s+/g, "");
+        editor_data += row.replace(/\s+/g, '');
       } else if (!clipboard_data_ended) {
-        clipboard_data += row.replace(/\s+/g, "");
+        clipboard_data += row.replace(/\s+/g, '');
       }
     }
   }
 
-  var pixel = up_d['Pixel'].split('x');
+  var pixel = up_d['Pixel'] ? up_d['Pixel'].split('x') : calculateDataSize(up_array);
   change_edit_pixel(pixel[0], pixel[1]);
 
   $('#memo').val(up_d['Memo']);
@@ -294,6 +285,14 @@ function loadUserDataIntoEditor(up_array) {
   clipboard = clipboard_data.split(',');
   set_data();
   set_clip_data();
+}
+
+function calculateDataSize(data) {
+  const dataBytes = data.join().split(',').filter(Boolean).length;
+  const dataBits = dataBytes * 8;
+  const dataModule = Math.max(Math.sqrt(dataBits || 0), 8);
+
+  return [dataModule, dataModule];
 }
 
 /*
@@ -323,4 +322,3 @@ function data_download() {
     document.getElementById("download").href = window.URL.createObjectURL(blob);
   }
 }
-
