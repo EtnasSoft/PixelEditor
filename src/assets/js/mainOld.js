@@ -248,6 +248,9 @@ window.onload = function () {
 };
 
 function loadUserDataIntoEditor(up_array) {
+  up_array = up_array.join().replace(/\s/g, '').split(',').filter(Boolean);
+  up_array = [up_array.shift(), up_array.join()];
+
   let up_d = [],
     editor_data = '',
     clipboard_data = '',
@@ -283,6 +286,7 @@ function loadUserDataIntoEditor(up_array) {
 
   d = editor_data.split(',');
   clipboard = clipboard_data.split(',');
+
   set_data();
   set_clip_data();
 }
