@@ -32,10 +32,10 @@ body {
 }
 
 .wrapper {
-  height: 100vh;
-  width: 100vw;
   background: #252525;
   display: flex;
+  height: calc(100vh - 68px - 50px);
+  width: 100vw;
 }
 
 .pane {
@@ -46,6 +46,8 @@ body {
 
 .pane__left {
   min-width: 60%;
+  display: flex;
+  align-items: stretch;
 }
 
 .pane__right {
@@ -62,6 +64,21 @@ body {
   cursor: col-resize;
 }
 
+.pane__controls {
+  align-items: center;
+  background-color: #222;
+  border-top: 1px solid #3E3D3D;
+  border-bottom: 1px solid #3E3D3D;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 68px;
+  padding: 0;
+}
+
+
+// Defaults
+// -----------------
 button, input, select {
   margin: 12px;
   background-color: #3E3D3D;
@@ -72,4 +89,72 @@ button, input, select {
   border-radius: 4px;
   font-size: 15px;
   text-shadow: var(--main-black) 1px 1px 0;
+}
+
+
+// Atoms
+// -----------------
+.btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.btn--white {
+  background-color: #fafafa;
+  color: #222;
+
+  &:hover {
+    background-color: #ccc;
+  }
+}
+
+
+// Sections
+// ------------------
+header {
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+
+  .app__brand {
+    align-items: center;
+    display: flex;
+    margin-right: 20px;
+    min-width: 150px;
+
+    h1 {
+      font-weight: bolder;
+      font-size: 24px;
+    }
+
+    .app__logo {
+      margin: 0;
+      width: 48px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .scene__options {
+    display: flex;
+
+    .scene__options__title {}
+    .scene__options__size {}
+  }
+}
+
+footer {
+  background-color: #000;
+  color: #fff;
+  height: 50px;
+  margin: 0;
+  padding: 10px 20px;
+  width: 100%;
 }

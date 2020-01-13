@@ -14,11 +14,20 @@
     <link rel="stylesheet" href="/dist/app.css">
 </head>
 <body>
-<div class="wrapper">
-  <div class="pane pane__left scrollable">
-    <!-- -------------------------------------------------------------- -->
-    <div class="pane__controls">
-      <b>Pixel:</b>
+
+<header>
+  <div class="app__brand">
+    <figure class="app__logo">
+      <img src="dist/img/logo.png" alt="Main Logo">
+    </figure>
+    <h1>PixelEditor</h1>
+  </div>
+  <div class="scene__options">
+    <div class="scene__options__title">
+      <b>Memo:</b> <input type="text" name="memo" id="memo">
+    </div>
+    <div class="scene__options__size">
+      <b>Scene size:</b>
       <a href="javascript:change_edit_pixel(8,8);">8x8</a> |
       <a href="javascript:change_edit_pixel(16,16);">16x16</a> |
       <a href="javascript:change_edit_pixel(32,32);">32x32</a> |
@@ -38,53 +47,66 @@
         <option value="64">64</option>
       </select>
 
-      <a href="javascript:apply_edit_pixel();">Apply</a>&nbsp;&nbsp;
-      <br>
-      <a id="download" href="" download="" onclick="data_download()" 　target="_blank">Download</a> |
-      Upload <input type="file" id="data_upload" accept="*/*"><br>
-
-      <b>Memo:</b> <input type="text" name="memo" id="memo">
-      <!--<input type="checkbox" name="view_hx" id="view_hx" onclick="set_view_hx()" value="">View Hex Data<br>-->
+      <a class="btn btn--white" href="javascript:apply_edit_pixel();">Apply</a>
     </div>
-    <div id="edit_view">
-      <span id="edit_menu">
+  </div>
+</header>
+<div class="pane__controls">
+  <br>
+  <a id="download" href="" download="" onclick="data_download()" 　target="_blank">Download</a> |
+  Upload <input type="file" id="data_upload" accept="*/*"><br>
+
+  <div>
+    <label for="min_w">min_w:</label>
+    <input type="text" name="min_w" id="min_w">
+    <label for="min_h">min_h:</label>
+    <input type="text" name="min_h" id="min_h">&nbsp;
+  </div>
+  <!--<input type="checkbox" name="view_hx" id="view_hx" onclick="set_view_hx()" value="">View Hex Data<br>-->
+</div>
+<div class="wrapper">
+  <div class="pane pane__left scrollable">
+    <!-- -------------------------------------------------------------- -->
+
+
+    <div id="edit__tools">
       <b>Rotation</b>
-      <a href="javascript:edit_half_turn();">Half turn</a> |
-      <a href="javascript:edit_clockwize();">Clockwize</a> |
-      <a href="javascript:edit_counter_clockwize();">Counter Clockwize</a> |
-      <a href="javascript:edit_horisonal();">Horisonal</a> |
+      <a href="javascript:edit_half_turn();">Half turn</a>
+      <a href="javascript:edit_clockwize();">Clockwize</a>
+      <a href="javascript:edit_counter_clockwize();">Counter Clockwize</a>
+
+      <a href="javascript:edit_horisonal();">Horisonal</a>
       <a href="javascript:edit_vertical();">Vertical</a>
+
       <b>Image</b>
       <a href="javascript:edit_invert();">Invert</a>&nbsp;
       <span id="edit_mes"></span>
-      <br>
-      <span id="edit_info"></span> min_w:<input type="text" name="min_w" id="min_w"> min_h:<input type="text"
-        name="min_h"
-        id="min_h">&nbsp;
+    </div>
 
-        <br>
-
-
-      <b>Edit:</b>
-      <a href="#" onmouseover="set_edit_mes('edit_copy'); return false;">Copy</a> |
-      <a href="#" onmouseover="set_edit_mes('edit_paste');  return false;">Paste</a>
-          <input type="checkbox"
-            name="merge_paste"
-            id="merge_paste"
-            onclick="set_merge_paste()"
-            value="">Merge |
-      <a href="javascript:edit_cancel();">Cancel(esc)</a> |
-      <span id="edit_undo"><a href="javascript:edit_undo();"
-        onmouseover="set_edit_mes('edit_undo');">Undo(z)</a> | </span>
-      <input type="checkbox" name="edit_alert" id="edit_alert" onclick="set_edit_alert()" value="">None alert
-      </span>
-
+    <div id="edit_view">
+     <div>
+       <b>Edit:</b>
+       <a href="#" onmouseover="set_edit_mes('edit_copy'); return false;">Copy</a> |
+       <a href="#" onmouseover="set_edit_mes('edit_paste');  return false;">Paste</a>
+       <input type="checkbox"
+         name="merge_paste"
+         id="merge_paste"
+         onclick="set_merge_paste()"
+         value="">Merge |
+       <a href="javascript:edit_cancel();">Cancel(esc)</a> |
+       <span id="edit_undo"><a href="javascript:edit_undo();"
+         onmouseover="set_edit_mes('edit_undo');">Undo(z)</a> | </span>
+       <input type="checkbox" name="edit_alert" id="edit_alert" onclick="set_edit_alert()" value="">None alert
+     </div>
       <canvas id="editor" class="editor__canvas" width="" height=""></canvas>
       <canvas id="cursor" class="editor__canvas" width="" height=""></canvas>
     </div>
     <!-- -------------------------------------------------------------- -->
 
   </div>
+
+
+
   <div class="pane pane__right scrollable">
     <div class="pane__content">
       <div>
@@ -100,7 +122,11 @@
     </div>
     <div class="gutter"></div>
   </div>
+
 </div>
+<footer>
+  <section id="edit_info"></section>
+</footer>
 
 
 
