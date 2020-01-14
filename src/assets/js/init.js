@@ -345,9 +345,9 @@ function cnv2to16(b) {
 }
 
 function set_edit_mes(key) {
-  $('#edit_mes').html(edit_mes[key]);
+  $('#edit__message').html(edit_mes[key]);
 }
 
 function del_edit_mes() {
-  $('#edit_mes').html('');
+  $('#edit__message').html('');
 }

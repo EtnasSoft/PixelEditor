@@ -11,7 +11,94 @@
   --main-marfil: #DDD;
   --main-white: #FFF;
   --main-dark-grey: #333;
+
+  --header-height: 60px;
 }
+
+// Reset
+// (https://github.com/hankchizljaw/modern-css-reset)
+// -----------------------------------------------------------------
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// -----------------------------------------------------------------------
+
 
 body, input, select {
   //font-family: helvetica, arial, sans-serif;
@@ -20,11 +107,16 @@ body, input, select {
   //cursor: default;
 }
 
-.editor__canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
+.canvas__area {
+  position: relative;
+
+  .editor__canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
+
 
 .data__area {
   width: 100%;
@@ -46,41 +138,71 @@ body, input, select {
 }
 
 #min_w, #min_h {
-  padding: 0;
+  padding: 0 0 0 8px;
   width: 30px;
 }
 
-#edit_view {
+#editor__view {
   position: relative;
-  left: 30px;
+  left: 10px;
   top: 5px;
+  width: calc(100% - 60px);
 }
 
-#edit_mes {
-  background-color: #ccc;
+#edit__message {
+  background-color: #3E3D3D;
   padding: 3px 10px;
-  color: #222;
+  color: #fff;
+  display: block;
+  position: absolute;
+  right: 20px;
+  border: 1px solid #666;
+  font-size: 13px;
+  font-weight: 100;
+  letter-spacing: 1px;
 }
 
-#edit__tools {
-  background-color: #000;
+.editor__bar {
   display: flex;
-  flex-direction: column;
-  width: 105px;
-  z-index: 2;
-  align-items: center;
-  height: initial;
+  flex-flow: column;
+  z-index: 90;
+  width: 44px;
+  background-color: #292c31;
+}
 
-  a {
-    background-color: #000;
-    border-bottom: 2px solid #888;
-    border-right: 2px solid #888;
-    color: #888;
-    font-size: 10px;
-    height: 60px;
-    line-height: 60px;
-    margin-top: 20px;
-    width: 60px;
+.edit__tools {
+  display: flex;
+  margin: 2px auto;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 3px;
+
+  li {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    transition: all .2s linear;
+    margin-top: 3px;
+
+    .active {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &:hover:not(.active) {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    img {
+      width: 22px;
+      height: 22px;
+      margin: 5px;
+      opacity: .6;
+      transition: all .2s linear;
+    }
   }
 }
 

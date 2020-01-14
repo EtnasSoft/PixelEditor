@@ -32,26 +32,26 @@ body {
 }
 
 .wrapper {
-  background: #252525;
+  background: #171719;
   display: flex;
   height: calc(100vh - 68px - 50px);
-  width: 100vw;
 }
 
 .pane {
-  padding: 1em;
   color: #fff;
   overflow: auto;
 }
 
 .pane__left {
-  min-width: 60%;
+  min-width: 80%;
   display: flex;
   align-items: stretch;
 }
 
 .pane__right {
   position: relative;
+  width: 100%;
+  padding: 20px;
 }
 
 .gutter {
@@ -66,26 +66,50 @@ body {
 
 .pane__controls {
   align-items: center;
-  background-color: #222;
+  background-color: #25282C;
   border-top: 1px solid #3E3D3D;
   border-bottom: 1px solid #3E3D3D;
   color: #fff;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 68px;
+  margin-top: 60px;
   padding: 0;
+  height: 44px;
+  display: flex;
+
+  .panel__control {
+    padding-left: 20px;
+  }
 }
 
+.data__upload {
+  padding: 0 20px 0 0;
+  margin: 0;
+}
+
+.gsicon {
+  filter: invert( var(--gs-invert) ) drop-shadow(0 var(--sh-dy) 0 var(--sh-clr));
+  -webkit-user-drag: none;
+  user-drag: none;
+  -moz-user-drag: none;
+  width: 20px;
+  height: 20px;
+}
 
 // Defaults
 // -----------------
+ol, ul {
+  list-style-image: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 button, input, select {
   margin: 12px;
   background-color: #3E3D3D;
   color: var(--main-marfil);
   cursor: pointer;
   border: 1px solid var(--main-black);
-  padding: 10px 15px;
+  padding: 5px 15px;
   border-radius: 4px;
   font-size: 15px;
   text-shadow: var(--main-black) 1px 1px 0;
@@ -94,11 +118,20 @@ button, input, select {
 
 // Atoms
 // -----------------
+.text-white {
+  color: #fff;
+}
+
 .btn {
+  cursor: pointer;
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: 600;
   font-size: 14px;
+
+  &:hover {
+
+  }
 }
 
 .btn--white {
@@ -114,9 +147,10 @@ button, input, select {
 // Sections
 // ------------------
 header {
-  background-color: #000;
+  background-color: #1D1F22;
   color: #fff;
   display: flex;
+  height: 60px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -151,7 +185,7 @@ header {
 }
 
 footer {
-  background-color: #000;
+  background-color: #1D1F22;
   color: #fff;
   height: 50px;
   margin: 0;

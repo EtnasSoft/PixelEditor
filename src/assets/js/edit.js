@@ -36,7 +36,7 @@ function edit_invert() {
   edit_exit();
 }
 
-function edit_counter_clockwize() {
+function edit_counter_clockwise() {
   var mes = 'counter clockwize';
   var flag = edit_confirm(mes);
 

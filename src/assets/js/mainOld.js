@@ -233,7 +233,7 @@ window.onload = function () {
   }
 
   /* data upload */
-  var file = document.querySelector('#data_upload');
+  var file = document.querySelector('.data__upload');
   file.onchange = function () {
     var fileList = file.files;
     var reader = new FileReader();
