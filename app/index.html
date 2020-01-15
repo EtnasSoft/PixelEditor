@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!--(bake components/metas.html)-->
+</head>
+<body>
+<!--(bake components/header.html)-->
+<div class="wrapper">
+  <div class="pane pane__left scrollable">
+    <section class="editor__bar">
+      <div class="edit__tools">
+        <ul>
+          <li onClick="edit_half_turn();" data=""><img alt="Half turn" src="/dist/img/fill.svg"></li>
+          <li onClick="edit_clockwize();" data=""><img alt="Clockwize" src="/dist/img/fill.svg"></li>
+          <li onClick="edit_counter_clockwise();" data=""><img alt="Counter Clockwize" src="/dist/img/fill.svg"></li>
+          <li onClick="edit_horisonal();" data=""><img alt="Horizontal" src="/dist/img/fill.svg"></li>
+          <li onClick="edit_vertical();" data=""><img alt="Vertical" src="/dist/img/fill.svg"></li>
+          <li onClick="edit_invert();" data=""><img alt="Invert" src="/dist/img/fill.svg"></li>
+        </ul>
+      </div>
+    </section>
+    <section id="editor__view">
+      <span id="edit__message"></span>
+      <section class="canvas__area">
+        <canvas id="editor" class="editor__canvas" width="" height=""></canvas>
+        <canvas id="cursor" class="editor__canvas" width="" height=""></canvas>
+      </section>
+    </section>
+  </div>
+
+  <div class="pane pane__right scrollable">
+    <div class="pane__content">
+      <div>
+        <label for="hx">Hex Code</label>
+        <textarea id="hx" class="data__area" spellcheck="false" rows="10" cols="50"></textarea>
+      </div>
+      <div>
+        <label for="input__data">Input Data</label>
+        <textarea id="input__data" class="data__area" spellcheck="false" rows="10" cols="50"># [Pixel] 24x32
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x30, 0x60, 0x60, 0xA0, 0x70, 0xB0, 0x70, 0xB0, 0x60, 0x60, 0x60, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x01, 0xFD, 0xFD, 0x01, 0x01, 0x01, 0xFF, 0xE0, 0x53, 0xA8, 0x50, 0x40, 0x54, 0x57, 0x4B, 0xA5, 0x3C, 0x1C, 0x68, 0xE0, 0xC0, 0x00, 0x00, 0x1F, 0x20, 0x40, 0x80, 0xBF, 0x5F, 0x20, 0x9F, 0x40, 0x20, 0x10, 0xE1, 0xE8, 0xE8, 0x21, 0xD5, 0x12, 0x80, 0x28, 0x70, 0x2E, 0x1F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x82, 0xD5, 0xDE, 0xBD, 0xFA, 0x70, 0x01, 0x03, 0x00, 0x06, 0x05, 0xA2, 0xD5, 0xDE, 0xD8, 0xA0, 0x00,</textarea>
+        <button id="loadInputData">Load</button>
+      </div>
+    </div>
+    <div class="gutter"></div>
+  </div>
+
+</div>
+<!--(bake components/footer.html)-->
+<!--(bake components/scripts.html)-->
+</body>
+</html>

@@ -7,7 +7,7 @@ module.exports = grunt => {
       '*.js'
     ],
     lessMainFiles = [
-      ASSETS_DIR + 'less/*.less',
+      ASSETS_DIR + 'less/**/*.less',
     ],
     lessComponentAndPagesFiles = [
       ASSETS_DIR + 'less/components/*.less',
@@ -115,6 +115,6 @@ module.exports = grunt => {
     }
   });
 
-  grunt.registerTask('server', ['connect', 'watch', /*'bake'*/]);
-  grunt.registerTask('build', ['clean', 'uglify', 'copy', 'less', /*'bake'*/]);
+  grunt.registerTask('server', ['connect', 'watch', 'bake']);
+  grunt.registerTask('build', ['clean', 'uglify', 'copy', 'less', 'bake']);
 };

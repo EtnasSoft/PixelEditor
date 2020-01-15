@@ -12,7 +12,8 @@ const PixMapper = $(() => {
       var self = this;
 
       this.getGutter().addEventListener('mousedown', function (e) {
-        self.resizePanes(e)
+        console.info( 'mouse down' );
+        self.resizePanes(e);
       });
 
       this.getLoadDataSubmit().addEventListener('click', () => void this.loadData());
@@ -56,6 +57,7 @@ const PixMapper = $(() => {
       const leftPanel = leftPane.getBoundingClientRect();
 
       function mousemove(e) {
+        console.info( 'okis' );
         let newX = prevX - e.x;
         leftPane.style.width = leftPanel.width - newX + 'px';
       }

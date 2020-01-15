@@ -1,0 +1,71 @@
+header {
+  background-color: #1D1F22;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+
+  .top__bar {
+    display: flex;
+    height: 60px;
+
+    .app__brand {
+      align-items: center;
+      display: flex;
+      margin-right: 20px;
+      min-width: 150px;
+
+      h1 {
+        font-weight: bolder;
+        font-size: 24px;
+      }
+
+      .app__logo {
+        margin: 0;
+        width: 48px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .app__menu {
+      display: none;
+    }
+  }
+
+  .scene__options {
+    display: flex;
+
+    /* TEMPORAL */
+    position: absolute;
+    left: 220px;
+    top: 2px;
+    /* #TEMPORAL */
+
+    .scene__options__title {}
+    .scene__options__size {}
+  }
+
+  .pane__controls {
+    align-items: center;
+    background-color: #25282C;
+    border-top: 1px solid #3E3D3D;
+    border-bottom: 1px solid #3E3D3D;
+    color: #fff;
+    padding: 0;
+    height: 44px;
+    display: flex;
+
+    .panel__control {
+      padding-left: 20px;
+
+      .data__upload {
+        padding: 0 20px 0 0;
+        margin: 0;
+      }
+    }
+  }
+}
