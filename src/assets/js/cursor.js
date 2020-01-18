@@ -168,7 +168,6 @@ function end_cur() {
   set_edit_mes('drag_paste');
 }
 
-
 function view_cur_bw() {
   var view_x = cur_info['view_x'];
   var view_y = cur_info['view_y'];

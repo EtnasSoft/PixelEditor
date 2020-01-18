@@ -6,8 +6,8 @@ Copyright (c) 2016 emutyworks
 Released under the MIT license
 https://github.com/emutyworks/BitmapEditor/blob/master/LICENSE.txt
 */
-var MAX_PIXEL_X = 32;
-var MAX_PIXEL_Y = 32;
+var MAX_PIXEL_X = 16;
+var MAX_PIXEL_Y = 16;
 var PIXEL_SIZE = 14;
 var PRE_PIXEL_SIZE = 2;
 
@@ -32,14 +32,14 @@ var EDITOR_MENU_Y = PRE_PIXEL_SIZE * MAX_PIXEL_Y;
 var EDITOR_MAIN_Y = EDITOR_MENU_Y + EDITOR_MENU_SIZE;
 var EDITOR_PRE_X = 0;
 var EDITOR_PRE_Y = 0;
-var EDITOR_MAX_X = 1024; //(8 * 128) + 1 + 270;
+var EDITOR_MAX_X = 600; //(8 * 128) + 1 + 270;
 var EDITOR_MAX_Y = PRE_PIXEL_SIZE * MAX_PIXEL_Y + EDITOR_MENU_SIZE + (CLIP_MAX_Y * CLIP_BLOCK_SIZE + 10);
 
-var d = new Array();
+var d = [];
 var edit_clip = null;
 var clipboard = null;
-var undo_d = new Array();
-var undo_clipboard = new Array();
+var undo_d = [];
+var undo_clipboard = [];
 var set_w = null;
 var set_b = null;
 var get_dy = null;
@@ -47,8 +47,8 @@ var editor = null;
 var ctx = null;
 var cursor = null;
 var c_ctx = null;
-var cur_info = new Array();
-var edit_mes = new Array();
+var cur_info = [];
+var edit_mes = [];
 var edit_alert = null;
 var merge_paste = null;
 // var view_hx = null;
@@ -68,15 +68,19 @@ function init_clip() {
   var max_y = (CLIP_PIXEL_SIZE * 8 + 1) * CLIP_MAX_Y + 1;
 
   CLIP_X = PIXEL_SIZE * MAX_PIXEL_X + 10;
+  CLIP_X = PIXEL_SIZE * MAX_PIXEL_X + 40;
   CLIP_Y = EDITOR_MAIN_Y;
 
+  // TODO: Another canvas only for the clipboard window, leaving Editor alone on its own frame.
   ctx.fillStyle = EDITOR_B;
+  console.info( 'Clipboard data: ', CLIP_X, CLIP_Y, max_x, max_y );
+
   ctx.fillRect(CLIP_X, CLIP_Y, max_x, max_y);
 
+  // Printing the grid rulers
   init_clip_guide();
 
   c_ctx.clearRect(CLIP_X, CLIP_Y, max_x, max_y);
-
 }
 
 function init_clip_guide() {
@@ -172,17 +176,19 @@ function init_editor() {
       height: EDITOR_MAX_Y,
     });
 
-    //preview
+    // PREVIEW CANVAS
+    // TODO: Another canvas only for the "preview window"
     ctx.fillStyle = EDITOR_B;
+    console.info( 'Preview Window Data: ', EDITOR_PRE_X, EDITOR_PRE_Y, pre_max_x + 2, pre_max_y + 2 );
     ctx.fillRect(EDITOR_PRE_X, EDITOR_PRE_Y, pre_max_x + 2, pre_max_y + 2);
     set_editor_rect(EDITOR_PRE_X, EDITOR_PRE_Y, pre_max_x + 2, pre_max_y + 2, EDITOR_LINE);
 
-    //editor
+    // EDITOR CANVAS
     ctx.fillStyle = EDITOR_B;
     ctx.fillRect(0, EDITOR_MAIN_Y, max_x, max_y);
   }
 
-  init_editor_guide();
+  init_editor_guide(); // Printing the editor rulers
 
   /*$('#edit_menu').css({
       top: EDITOR_MAIN_Y - 38,
@@ -212,6 +218,9 @@ function init_editor_block(view_x, view_y, view_w, view_h, max_x, max_y) {
   ctx.fillRect(fill_x, fill_y + EDITOR_MAIN_Y, fill_w + add_w, fill_h + add_h);
 }
 
+/**
+ * The grid for small editor
+ */
 function init_editor_guide() {
   var max_x = PIXEL_SIZE * MAX_PIXEL_X;
   var max_y = PIXEL_SIZE * MAX_PIXEL_Y;
@@ -237,7 +246,7 @@ function init_editor_guide() {
 
 function init_edit_data() {
   const max_d = Math.max((MAX_PIXEL_X * MAX_PIXEL_Y / 8), 8);
-  console.info( max_d );
+
   d = new Array(max_d);
 
   for (var i = 0; i < max_d; i++) {

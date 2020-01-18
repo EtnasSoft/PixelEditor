@@ -5,7 +5,10 @@ window.onload = function () {
   cursor = document.getElementById('cursor');
   c_ctx = cursor.getContext('2d');
 
+  // Editor is the canvas area for draw
   init_editor();
+
+  // Clip is the layout area for compositions
   init_clip();
 
   merge_paste = false;
