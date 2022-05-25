@@ -13,7 +13,7 @@
     "assets": "src/assets/"
   },
   "devDependencies": {
-    "grunt": "^1.0.4",
+    "grunt": "^1.5.3",
     "grunt-bake": "^1.9.0",
     "grunt-bbb-requirejs": "0.1.0-alpha.8",
     "grunt-bbb-server": "git://github.com/Antevenio/grunt-bbb-server.git",
